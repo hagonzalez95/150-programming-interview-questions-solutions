@@ -1,0 +1,49 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Problem_1._1
+{
+    public class Program
+    {
+        public static bool hasUniqueCharactersWithDS(string str)
+        {
+            //A hash set is used because its search algorithm always takes the same time is O(1)
+            HashSet<char> hash = new HashSet<char>();
+            
+            foreach(char c in str)
+            {
+                //If this character has already been added by the instruccion "hash.Add(c)"
+                if (hash.Contains(c))
+                {
+                    //This means the character has already been seen in the string
+                    return false;
+                }
+                //All characters that have been analyzed are stored in the hash set to then compare the further ones
+                hash.Add(c);
+            }
+            return true;
+        }
+
+        public static bool hasUniqueCharaters(string arg)
+        {
+            //Goes through the entire string comparing each character with the ones in front of it
+            for (int i = 0; i < arg.Length; i++)
+            {
+                for (int j = i + 1 ; j < arg.Length; j++)
+                {
+                    //Compares the values of the analyzed characters
+                    if(arg[i] == arg[j])
+                    {
+                        //If they are equal, then the string does not has all unique characters
+                        return false;
+                    }
+                }
+            }
+            //If the for runs completely means there werent any matches
+            return true;
+        }
+    }
+}
