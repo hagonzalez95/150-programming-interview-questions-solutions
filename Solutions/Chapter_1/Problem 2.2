@@ -1,0 +1,28 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Problem_1._2
+{
+    class Program
+    {
+        public static string reverseString(string str)
+        {
+            StringBuilder strBuild = new StringBuilder(str);
+            //If the string is empty, we throw an exception
+            if (str == null)
+            {
+                throw new ArgumentNullException("str");
+            }
+            for (int i =  0; i < str.Length / 2; i++)
+            {
+                char char1 = strBuild[i];
+                strBuild[i] = str[strBuild.Length - i - 1];
+                strBuild[strBuild.Length - i - 1] = char1;
+            }
+            return strBuild.ToString();
+        }
+    }
+}
