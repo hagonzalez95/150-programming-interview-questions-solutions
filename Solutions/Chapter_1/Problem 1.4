@@ -1,0 +1,54 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Problem_1._4
+{
+    class Program
+    {
+        public static bool areAnagrams(string str1, string str2)
+        {
+            //Declaration of the hash set that is going to be used to store all the analyzed characters
+            HashSet<char> hash =  new HashSet<char>();
+
+            //This for will go through all the characters of str1
+            for (int i = 0; i < str1.Length; i++)
+            {
+                //If the analyzed character is not a blank space and is the first time it appears in the string
+                if(str1[i] != ' ' && !hash.Contains(str1[i]))
+                {
+                    //The counters will count the number of times that a character appears on the string
+                    //Count1 is for the first string, and count2 is for the second
+                    //Count1 is initialized in one because it wouldn't be efficient to compare that character with itself
+                    int count1 = 1, count2 = 0;
+                    //This counts how many "str1[i]" characters are there in the string
+                    for(int j = i + 1; j < str1.Length; j++)
+                    {
+                        if(str1[i] == str1[j])
+                        {
+                            count1 += 1;
+                        }
+                    }
+                    //Counts how many "str1[i]" characters are there in the second string
+                    foreach(char c in str2)
+                    {
+                        if(str1[i] == c)
+                        {
+                            count2 += 1;
+                        }
+                    }
+                    //If the same character repeats different amount of times between strings, then those are not anagrams
+                    if(count1 != count2)
+                    {
+                        return false;
+                    }
+                    //Once a character has been analyzed it is added to the hash set
+                    hash.Add(str1[i]);
+                }
+            }
+            return true;
+        }
+    }
+}
