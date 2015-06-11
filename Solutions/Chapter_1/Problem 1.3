@@ -1,0 +1,38 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Problem_1._3
+{
+    class Program
+    {
+        public static string removeDuplicates(string input)
+        {
+            //If the string is empty, we notify it
+            if(input == null)
+            {
+                throw new ArgumentNullException("input");
+            }
+            //If the string has just one character, it means that there cannot be repeated characters
+            if(input.Length < 2)
+            {
+                return input;
+            }
+            //Every character is going to be compared with the further characters
+            for(int i = 0; i < input.Length; i++)
+            {
+                for(int j = i + 1; j < input.Length; j++)
+                {
+                    if(input[i] == input[j])
+                    {
+                        //Removes the repeated character
+                        input = input.Remove(j, 1);
+                    }
+                }
+            }
+            return input;
+        }
+    }
+}
